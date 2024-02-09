@@ -1,46 +1,67 @@
 // ScheduleForm.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Correct import
 import { TextField, Button, Grid } from '@mui/material';
 import AssignedAgent from '../AssignedAgent/AssignedAgent';
+import StaffList from '../StaffList/StaffList';
 
 const ScheduleForm = () => {
     const [formData, setFormData] = React.useState({
-     day:'',
-     date:'',
-    });
-
-    const [assignedAgent, setAssignedAgent] = React.useState(null); // State to store assigned agent details
-
-    // to route back to the staffList
-    let navigate = useNavigate(); // Use useNavigate instead of useHistory
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+        day: '',
+        time: '',
+        // Add more fields as needed
+      });
+    
+      const [assignedAgent, setAssignedAgent] = React.useState(false);
+      const [staffList, setStaffList] = React.useState([]); // State to store the fetched staff list
+     
+       // Simulate fetching the staff list from an API (replace with your actual API call)
+       const fakeStaffList = [
+        {
+          id: 1,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "9",
+          availableTo: "12",
+          availableDay: "monday",
+        },
+        {
+          id: 2,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "9",
+          availableTo: "12",
+          availableDay: "monday",
+        },
+        {
+          id: 3,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "12",
+          availableTo: "15",
+          availableDay: "sonday",
+        },
+    ]
+    
+      const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform actions such as sending the data to the server, updating state, etc
     console.log("formData: ",formData);
-    
-    // Example: Call an API to perform scheduling logic
-    // api.scheduleStaff(scheduleData);
 
-   
-      // Simulate assigning an agent based on the form data (replace with your actual logic)
-      const fakeAssignedAgent = {
-        name: 'John Doe',
-        email: 'john@example.com',
-        // Add more fields as needed
-      };
   
-      // Update the state with assigned agent details
-      setAssignedAgent(fakeAssignedAgent);
+      // show available agents details, later hm real data ka response use krege
+    //   const url="abc";
+    //   let reponse=axios.get("");
+    //   setStaffList(reponse.data);
 
-       //routing back to the staff list
-    navigate("/assignedagent");
+    // Update the state with assigned agent details and fetched staff list
+    setAssignedAgent(true);
+    setStaffList(fakeStaffList);
+
   };
 
   return (
@@ -55,8 +76,8 @@ const ScheduleForm = () => {
             value={formData.day}
             onChange={(e) =>handleChange(e)}
           />
-        </Grid>
-        <Grid item xs={12}>
+         </Grid>
+         <Grid item xs={12}>
           <TextField
             fullWidth
             label="Time"
@@ -64,17 +85,17 @@ const ScheduleForm = () => {
             value={formData.time}
             onChange={(e) =>handleChange(e)}
           />
-        </Grid>
+        </Grid>       
         <Grid item xs={12}>
           <Button type="submit" variant="contained" color="primary">
-            Assign Staff
+            Search Staff
           </Button>
         </Grid>
       </Grid>
     </form>
 
     {/* Conditionally render AssignedAgent component if an agent is assigned */}
-    {assignedAgent && <AssignedAgent agent={assignedAgent} />}
+    {assignedAgent && <StaffList staffList={staffList}/>}
 
     </div>
   );

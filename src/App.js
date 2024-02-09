@@ -8,27 +8,6 @@ import AssignedAgent from './components/AssignedAgent/AssignedAgent';
 
 function App() {
 
-  const staffList=[
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com"
-      // Add more fields as needed
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com"
-      // Add more fields as needed
-    },
-    {
-      "id": 3,
-      "name": "Bob Johnson",
-      "email": "bob@example.com"
-      // Add more fields as needed
-    },
-    // Add more staff members as needed
-  ]
 
 
   
@@ -37,7 +16,7 @@ function App() {
         <Router> {/* Wrap everything with Router */}
         <Routes>
           <Route path="/" element={<ScheduleForm />} />
-          <Route path="/stafflist" element={<StaffList staffList={staffList} />} />
+          <Route path="/stafflist" element={<StaffList/>} />
           <Route path="/staffform" element={<StaffForm />} />
           <Route path="/assignedagent" element={<AssignedAgent />} />
         </Routes>
