@@ -3,35 +3,32 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const StaffList = ({staffList}) => {
+    const onEdit=async()=>{
+        try {
+            const url="abc";
+              let response = await axios.patch(url, formData);
+              alert("updated successfully");
+              // console.log(response.data);
+            } catch (error) {
+              if (error.response) {
+                alert("error in updating the agent");
+              }
+            }
+    }
 
-    // const staffList=[
-    //     {
-    //       "id": 1,
-    //       "name": "John Doe",
-    //       "email": "john@example.com",
-    //       "availableFrom":"9",
-    //       "availableTo":"12",
-    //       "availableDay":"monday"
-    //     },
-    //     {
-    //       "id": 2,
-    //       "name": "Jane Smith",
-    //       "email": "jane@example.com",
-    //       "availabeFrom":"12",
-    //       "availabeTo":"15",
-    //       "availableDay":"monday"
-    //     },
-    //     {
-    //       "id": 3,
-    //       "name": "Bob Johnson",
-    //       "email": "bob@example.com",
-    //       "availabe_froavailableFrom":"9",
-    //       "availableTo":"12",
-    //       "availableDay":"sunday"
-    //     },
-    //     // Add more staff members as needed
-    //   ]
-    
+    const onDelete=async()=>{
+        try {
+            const url="abc";
+            const id="id of the agent to delete"
+              let response = await axios.delete(url, id);
+              alert("deleted successfully");
+              // console.log(response.data);
+            } catch (error) {
+              if (error.response) {
+                alert("error in deleting the agent");
+              }
+            }
+    }
 
   return (
     <TableContainer component={Paper}>
@@ -54,6 +51,16 @@ const StaffList = ({staffList}) => {
               <TableCell>{staff.availableFrom}</TableCell>
               <TableCell>{staff.availableTo}</TableCell>
               <TableCell>{staff.availableDay}</TableCell>
+              <TableCell>
+                {/* Edit Button */}
+                <Button variant="outlined" color="primary" onClick={() => onEdit(staff.id)}>
+                  Edit
+                </Button>
+                {/* Delete Button */}
+                <Button variant="outlined" color="secondary" onClick={() => onDelete(staff.id)}>
+                  Delete
+                </Button>
+              </TableCell>
               {/* Add more fields as needed */}
             </TableRow>
           ))}
