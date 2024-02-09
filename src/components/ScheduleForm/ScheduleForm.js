@@ -1,5 +1,6 @@
 // ScheduleForm.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Correct import
 import { TextField, Button, Grid } from '@mui/material';
 
 const ScheduleForm = () => {
@@ -9,7 +10,7 @@ const ScheduleForm = () => {
     });
 
     // to route back to the staffList
-    let history=React.useHistory();
+    let navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,7 +26,7 @@ const ScheduleForm = () => {
     // api.scheduleStaff(scheduleData);
 
     //routing back to the staff list
-    history.push("/stafflist");
+    navigate("/stafflist");
   };
 
   return (
