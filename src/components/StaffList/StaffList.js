@@ -1,12 +1,15 @@
 // StaffList.js
 import React from 'react';
+import axios from "axios";
+import { TextField, Button, Grid } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const StaffList = ({staffList}) => {
+   
     const onEdit=async()=>{
         try {
             const url="abc";
-              let response = await axios.patch(url, formData);
+              let response = await axios.patch(url, "formData");
               alert("updated successfully");
               // console.log(response.data);
             } catch (error) {
@@ -53,7 +56,7 @@ const StaffList = ({staffList}) => {
               <TableCell>{staff.availableDay}</TableCell>
               <TableCell>
                 {/* Edit Button */}
-                <Button variant="outlined" color="primary" onClick={() => onEdit(staff.id)}>
+                <Button variant="outlined" color="primary" style={{ marginRight: '8px' }} onClick={() => onEdit(staff.id)}>
                   Edit
                 </Button>
                 {/* Delete Button */}
