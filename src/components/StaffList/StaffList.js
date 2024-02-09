@@ -1,11 +1,40 @@
 // StaffList.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from "axios";
 import { TextField, Button, Grid, Box } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import EditForm from '../EditForm/EditForm';
 
 const StaffList = ({staffList}) => {
+    // const[] make a state to store the list when this component is called after submitting the agent creation form, no prop was sent from there hence 
+    // have to use: useEffect here and make a get request to fetch the list to agents to show
+    const fakeStaffList = [
+        {
+          id: 1,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "9",
+          availableTo: "12",
+          availableDay: "Monday",
+        },
+        {
+          id: 2,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "9",
+          availableTo: "12",
+          availableDay: "Monday",
+        },
+        {
+          id: 3,
+          name: "John Doe",
+          email: "john@example.com",
+          availableFrom: "9",
+          availableTo: "12",
+          availableDay: "Monday",
+        },
+      ];
+
    
         const [isEditing, setIsEditing] = React.useState(false);
         const [editedStaff, setEditedStaff] = React.useState(null);
@@ -33,6 +62,15 @@ const StaffList = ({staffList}) => {
             setEditedStaff(null);
             setIsEditing(false);
           };
+
+        //   when list loaded for the first time:
+        useEffect(async()=>{
+            let url="get url here";
+            let response = await axios.get(url);
+            //   alert("fatched successfully");
+            //   console.log(response.data);
+
+        },[])
 
     const onDelete=async()=>{
         try {

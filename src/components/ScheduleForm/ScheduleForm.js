@@ -53,6 +53,7 @@ const GetAgent=async()=>{
           let response = await axios.get(url);
         //   alert("fatched successfully");
           console.log(response.data);
+        //   setStaffList(actual_data);
         } catch (error) {
           if (error.response) {
             alert("error in fetching the agent");
@@ -71,6 +72,8 @@ const GetAgent=async()=>{
 
     // Update the state with assigned agent details and fetched staff list
     setAssignedAgent(true);
+
+// for  now just dummy data
     setStaffList(fakeStaffList);
 
   };
