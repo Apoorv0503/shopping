@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScheduleForm from './components/ScheduleForm/ScheduleForm';
 import StaffList from './components/StaffList/StaffList';
 import StaffForm from './components/StaffForm/StaffForm';
-import AssignedAgent from './components/AssignedAgent/AssignedAgent';
+import AssignedAgent from './components/EditForm/EditForm';
 
 function App() {
 

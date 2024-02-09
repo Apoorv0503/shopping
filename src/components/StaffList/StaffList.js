@@ -1,23 +1,38 @@
 // StaffList.js
 import React from 'react';
 import axios from "axios";
-import { TextField, Button, Grid } from '@mui/material';
+import { TextField, Button, Grid, Box } from '@mui/material';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import EditForm from '../EditForm/EditForm';
 
 const StaffList = ({staffList}) => {
    
-    const onEdit=async()=>{
-        try {
-            const url="abc";
-              let response = await axios.patch(url, "formData");
-              alert("updated successfully");
-              // console.log(response.data);
-            } catch (error) {
-              if (error.response) {
-                alert("error in updating the agent");
-              }
-            }
-    }
+        const [isEditing, setIsEditing] = React.useState(false);
+        const [editedStaff, setEditedStaff] = React.useState(null);
+
+
+        const onEdit = (staffId) => {
+            // Set the staff to be edited and toggle the editing state
+            const staffToEdit = staffList.find((staff) => staff.id === staffId);
+            setEditedStaff(staffToEdit);
+            setIsEditing(true);
+          };
+        
+          const onCancelEdit = () => {
+            // Clear the edited staff and toggle the editing state
+            setEditedStaff(null);
+            setIsEditing(false);
+          };
+        
+          const onSaveEdit = (editedData) => {
+            // Implement save/edit logic here
+            console.log('Saving edited staff:', editedData);
+            // Update the staffList or send data to the server
+        
+            // Clear the edited staff and toggle the editing state
+            setEditedStaff(null);
+            setIsEditing(false);
+          };
 
     const onDelete=async()=>{
         try {
@@ -69,6 +84,13 @@ const StaffList = ({staffList}) => {
           ))}
         </TableBody>
       </Table>
+
+      {/* Render the EditForm if editing */}
+      {isEditing && (
+        <Box mt={5} border={1} p={2} borderColor="primary.main">
+          <EditForm staff={editedStaff} onCancel={onCancelEdit} onSave={onSaveEdit} />
+        </Box>
+      )}
     </TableContainer>
   );
 };
