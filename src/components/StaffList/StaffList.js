@@ -64,13 +64,13 @@ const StaffList = ({staffList}) => {
           };
 
         //   when list loaded for the first time:
-        useEffect(async()=>{
-            let url="get url here";
-            let response = await axios.get(url);
-            //   alert("fatched successfully");
-            //   console.log(response.data);
+        // useEffect(async()=>{
+        //     let url="get url here";
+        //     let response = await axios.get(url);
+        //     //   alert("fatched successfully");
+        //     //   console.log(response.data);
 
-        },[])
+        // },[])
 
     const onDelete=async()=>{
         try {
