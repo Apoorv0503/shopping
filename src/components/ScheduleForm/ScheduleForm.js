@@ -8,6 +8,9 @@ const ScheduleForm = () => {
      date:'',
     });
 
+    // to route back to the staffList
+    let history=React.useHistory();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -20,6 +23,9 @@ const ScheduleForm = () => {
     
     // Example: Call an API to perform scheduling logic
     // api.scheduleStaff(scheduleData);
+
+    //routing back to the staff list
+    history.push("/stafflist");
   };
 
   return (
