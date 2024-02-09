@@ -46,17 +46,28 @@ const ScheduleForm = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
 
-
-  const handleSubmit = (e) => {
+const GetAgent=async()=>{
+   
+        try {
+        const url="abc";
+          let response = await axios.get(url);
+        //   alert("fatched successfully");
+          console.log(response.data);
+        } catch (error) {
+          if (error.response) {
+            alert("error in fetching the agent");
+          }
+        
+      };
+}
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Perform actions such as sending the data to the server, updating state, etc
     console.log("formData: ",formData);
 
   
       // show available agents details, later hm real data ka response use krege
-    //   const url="abc";
-    //   let reponse=axios.get("");
-    //   setStaffList(reponse.data);
+    await GetAgent();
 
     // Update the state with assigned agent details and fetched staff list
     setAssignedAgent(true);
